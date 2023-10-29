@@ -17,8 +17,8 @@ class GeneticAlgoArt:
         self.num_parents_mating = int(sol_per_pop/4)
         self.dimentions = 2
         self.image_name = 'inputGA.png'
-        self.random_mutation_min_val = 10
-        self.random_mutation_max_val = self.image_size
+        # self.random_mutation_min_val = 10
+        # self.random_mutation_max_val = self.image_size
         self.result_image = [int(self.image_size/2), int(self.image_size/2)]
         self.reference_image = self.edgeDetection(self.image_name, self.image_size)
         self.reference_mse = 0
@@ -134,8 +134,9 @@ class GeneticAlgoArt:
                         init_range_low = 0,
                         init_range_high= self.image_size,
                         on_generation=self.on_generation,
-                        random_mutation_min_val=self.random_mutation_min_val,
-                        random_mutation_max_val=self.random_mutation_max_val,
+                        # random_mutation_min_val=self.random_mutation_min_val,
+                        # random_mutation_max_val=self.random_mutation_max_val,
+                        mutation_type=None
                     )
         ga_instance.run()
     
