@@ -39,11 +39,11 @@ if uploaded_file is not None:
                 col1, col2, col3 = st.columns((4,1,4))
                 # create range sliders for the parameters
                 with col1:
-                    num_generations_ga = st.slider("##### Generations in Genetic Algoritm", 500, 10000, 2000, 500)
+                    num_generations_ga = st.slider("##### Generations in Genetic Algoritm", 500, 5000, 2000, 500)
                     num_generations_gol = st.slider("##### Generations in Game of Life", 100, 5000, 500, 100)
                 with col3:
                     solution_per_population = st.slider("##### Population Size", 10, 100, 50, 10)
-                    image_size = st.slider("##### Image Size", 128, 1024, 512, 2)
+                    image_size = st.slider("##### Image Size", 128, 512, 512, 2)
                     save_frequency = 100
         
         st.write('---')
