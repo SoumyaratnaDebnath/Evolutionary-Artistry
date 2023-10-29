@@ -69,36 +69,72 @@ class GeneticAlgoArt:
         img = ImageOps.invert(img)
         return img
 
+    # def make_image_display(self, size, points):
+    #     num_points = len(points) // 2
+    #     # Convert points to a numpy array for efficient calculations
+    #     points_array = np.array(points).reshape((num_points, 2))
+    #     # Calculate and store all pairwise distances
+    #     distances = np.sqrt(((points_array[:, None] - points_array) ** 2).sum(axis=2))
+    #     # Create a graph to represent the points and distances
+    #     G = nx.Graph()
+    #     for i in range(num_points):
+    #         G.add_node(i, pos=(points[i * 2], points[i * 2 + 1]))
+    #     for i in range(num_points):
+    #         for j in range(i + 1, num_points):
+    #             distance = distances[i, j]
+    #             G.add_edge(i, j, weight=distance)
+    #     # Calculate the minimum spanning tree using Kruskal's algorithm
+    #     T = nx.minimum_spanning_tree(G)
+    #     # Create the image
+    #     img = Image.new('L', size, 0)
+    #     draw = ImageDraw.Draw(img)
+    #     # Draw the edges from the minimum spanning tree
+    #     for edge in T.edges():
+    #         i, j = edge
+    #         x1, y1 = points[i * 2], points[i * 2 + 1]
+    #         x2, y2 = points[j * 2], points[j * 2 + 1]
+    #         # Compare squared distance to avoid square root calculation
+    #         if (x1 - x2)**2 + (y1 - y2)**2 < (self.image_size * 0.2) ** 2:
+    #             draw.line((y1, x1, y2, x2), fill=255, width=1)
+    #     # invert the image
+    #     img = ImageOps.invert(img)
+        
+    #     return img
+
     def make_image_display(self, size, points):
         num_points = len(points) // 2
         # Convert points to a numpy array for efficient calculations
         points_array = np.array(points).reshape((num_points, 2))
-        # Calculate and store all pairwise distances
-        distances = np.sqrt(((points_array[:, None] - points_array) ** 2).sum(axis=2))
-        # Create a graph to represent the points and distances
-        G = nx.Graph()
-        for i in range(num_points):
-            G.add_node(i, pos=(points[i * 2], points[i * 2 + 1]))
-        for i in range(num_points):
-            for j in range(i + 1, num_points):
-                distance = distances[i, j]
-                G.add_edge(i, j, weight=distance)
-        # Calculate the minimum spanning tree using Kruskal's algorithm
-        T = nx.minimum_spanning_tree(G)
+        sorted_indices = np.argsort(points_array[:, 0])  # Sort points by x-coordinate
+
         # Create the image
         img = Image.new('L', size, 0)
         draw = ImageDraw.Draw(img)
-        # Draw the edges from the minimum spanning tree
-        for edge in T.edges():
-            i, j = edge
-            x1, y1 = points[i * 2], points[i * 2 + 1]
-            x2, y2 = points[j * 2], points[j * 2 + 1]
-            # Compare squared distance to avoid square root calculation
-            if (x1 - x2)**2 + (y1 - y2)**2 < (self.image_size * 0.2) ** 2:
-                draw.line((y1, x1, y2, x2), fill=255, width=1)
-        # invert the image
+
+        # Initialize the starting point as the leftmost point
+        start_point = sorted_indices[0]
+        x, y = points_array[start_point]
+        visited = set([start_point])
+
+        while len(visited) < num_points:
+            min_distance = float('inf')
+            closest_point = None
+
+            for i in range(num_points):
+                if i not in visited:
+                    distance = ((x - points_array[i, 0]) ** 2 + (y - points_array[i, 1]) ** 2)
+                    if distance < min_distance:
+                        min_distance = distance
+                        closest_point = i
+
+            x2, y2 = points_array[closest_point]
+            draw.line((y, x, y2, x2), fill=255, width=1)
+            visited.add(closest_point)
+            x, y = x2, y2
+
+        # Invert the image
         img = ImageOps.invert(img)
-        
+
         return img
     
     def fitness_func(self, ga_instance, solution, solution_idx):
@@ -122,6 +158,7 @@ class GeneticAlgoArt:
             self.progress_bar.progress((instance/self.num_generations), text='Genetic Algorithm in Progress')
         if instance == self.num_generations-1:
             img = self.make_image_display((self.image_size, self.image_size), self.result_image)
+            # img = self.make_image((self.image_size, self.image_size), self.result_image)
             img.save('outputGA.png')
     
     def run(self):
@@ -136,7 +173,6 @@ class GeneticAlgoArt:
                         on_generation=self.on_generation,
                         random_mutation_min_val=self.random_mutation_min_val,
                         random_mutation_max_val=self.random_mutation_max_val,
-                        # mutation_type=None
                     )
         ga_instance.run()
     

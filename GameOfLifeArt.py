@@ -62,7 +62,7 @@ class GameOfLifeArt:
             input_array_temp = apply_rules(input_array)
             if np.array_equal(input_array, input_array_temp):break
             else:input_array = input_array_temp
-            if generation % 10 == 0:
+            if generation % int(self.num_generations/200) == 0:
                 self.save_colored(input_array, generation)
             self.progress_bar.empty()
             self.progress_bar.progress((generation/self.num_generations), text='Game of Life in Progress')
