@@ -39,12 +39,12 @@ if uploaded_file is not None:
                 col1, col2, col3 = st.columns((4,1,4))
                 # create range sliders for the parameters
                 with col1:
-                    num_generations_ga = st.slider("##### Generations in Genetic Algoritm", 500, 10000, 2000, 500)
-                    num_generations_gol = st.slider("##### Generations in Game of Life", 100, 2000, 500, 100)
+                    num_generations_ga = st.slider("##### Generations in Genetic Algoritm", 500, 5000, 2000, 500)
+                    num_generations_gol = st.slider("##### Generations in Game of Life", 200, 2000, 500, 100)
                 with col3:
                     solution_per_population = st.slider("##### Population Size", 20, 50, 50, 10)
                     image_size = st.slider("##### Image Size", 128, 1024, 512, 2)
-                    save_frequency = 100
+                    save_frequency = int(num_generations_ga/250) # display 250 images in total
         
         st.write('---')
 
@@ -55,7 +55,7 @@ if uploaded_file is not None:
             _bar = st.progress(0, text='Genetic Algorithm in Progress')
             G = GeneticAlgoArt(num_generations=num_generations_ga+1, sol_per_pop=solution_per_population, image_size=image_size, save_frequency=save_frequency, progress_bar=_bar)
             G.run()
-            _bar.progress(1.0, text='Genetic Algorithm in Progress')
+            _bar.progress(1.0, text='Genetic Algorithm Completed')
             makeGIF('GA_images', 'outputGA.gif', duration=10)
             
             col1, col2 = st.columns((1, 1))
@@ -71,7 +71,7 @@ if uploaded_file is not None:
                 _bar = st.progress(0, text='Game of Life in Progress')
                 GOL = GameOfLifeArt('outputGA.png', num_generations_gol+1, _bar)
                 GOL.run()                    
-                _bar.progress(1.0, text='Game of Life in Progress')
+                _bar.progress(1.0, text='Game of Life in Completed')
                 makeGIF('GOL_images', 'outputGOL.gif', duration=10)
                 col1, col2, col3 = st.columns((1, 2, 1))
                 with col2:

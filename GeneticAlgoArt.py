@@ -157,6 +157,8 @@ class GeneticAlgoArt:
             self.progress_bar.empty()
             self.progress_bar.progress((instance/self.num_generations), text='Genetic Algorithm in Progress')
         if instance == self.num_generations-1:
+            self.progress_bar.empty()
+            self.progress_bar.progress((instance/self.num_generations), text='Finishing Up')
             img = self.make_image_display((self.image_size, self.image_size), self.result_image)
             # img = self.make_image((self.image_size, self.image_size), self.result_image)
             img.save('outputGA.png')
