@@ -14,7 +14,7 @@ st.write('---')
 
 with st.container():
     # upload a single image
-    uploaded_file = st.file_uploader("#### Upload an Imag", type=["png", "jpg", "jpeg"])
+    uploaded_file = st.file_uploader("#### Upload an Image", type=["png", "jpg", "jpeg"])
     # save the uploaded file as img.png
     if uploaded_file is not None:
         with open("inputGA.png", "wb") as f:
