@@ -47,7 +47,8 @@ if uploaded_file is not None:
                     # image_size = st.slider("##### Image Size", 128, 1024, 512, 2)
                     image_size = 512
                     save_frequency = int(num_generations_ga/250) # display 250 images in total
-        
+
+        st.markdown("<br>", unsafe_allow_html=True)
         # create a button to start the optimization
         if st.button("Start Visualization using Genetic Algorithm and Game of Life", type="primary"):
 
