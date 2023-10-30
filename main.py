@@ -48,8 +48,6 @@ if uploaded_file is not None:
                     image_size = 512
                     save_frequency = int(num_generations_ga/250) # display 250 images in total
         
-        st.write('---')
-
         # create a button to start the optimization
         if st.button("Start Visualization using Genetic Algorithm and Game of Life", type="primary"):
 
