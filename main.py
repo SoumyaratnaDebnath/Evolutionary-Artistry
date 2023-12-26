@@ -46,7 +46,7 @@ if uploaded_file is not None:
                     num_generations_gol = st.slider("##### Generations in Game of Life", 200, 2000, 500, 100)
                     # image_size = st.slider("##### Image Size", 128, 1024, 512, 2)
                     image_size = 512
-                    save_frequency = int(num_generations_ga/25) # display 250 images in total
+                    save_frequency = int(num_generations_ga/20) # display 250 images in total
 
         st.markdown("<br>", unsafe_allow_html=True)
         # create a button to start the optimization
