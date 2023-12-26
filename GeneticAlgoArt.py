@@ -159,7 +159,14 @@ class GeneticAlgoArt:
         self.result_image.append(solution[1])
         self.reference_mse = self.fitness_func(ga_instance, solution, solution_idx)
         instance = ga_instance.generations_completed
-        if instance % self.save_frequency == 0:
+        if instance % int(self.save_frequency/2) == 0 and instance <= self.num_generations/2:
+            # img = self.make_image((self.image_size, self.image_size), self.result_image)
+            img = self.make_image_display((self.image_size, self.image_size), self.result_image)
+            img = self.write_text_on_image(img, 'Generation: ' + str(instance))
+            img.save('GA_images/' + self.int2str(instance) + '.png')
+            self.progress_bar.empty()
+            self.progress_bar.progress((instance/self.num_generations), text='Genetic Algorithm in Progress')
+        elif instance % self.save_frequency*2 == 0 and instance > self.num_generations/2:
             # img = self.make_image((self.image_size, self.image_size), self.result_image)
             img = self.make_image_display((self.image_size, self.image_size), self.result_image)
             img = self.write_text_on_image(img, 'Generation: ' + str(instance))
