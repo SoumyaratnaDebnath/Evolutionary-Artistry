@@ -69,38 +69,6 @@ class GeneticAlgoArt:
         img = ImageOps.invert(img)
         return img
 
-    # def make_image_display(self, size, points):
-    #     num_points = len(points) // 2
-    #     # Convert points to a numpy array for efficient calculations
-    #     points_array = np.array(points).reshape((num_points, 2))
-    #     # Calculate and store all pairwise distances
-    #     distances = np.sqrt(((points_array[:, None] - points_array) ** 2).sum(axis=2))
-    #     # Create a graph to represent the points and distances
-    #     G = nx.Graph()
-    #     for i in range(num_points):
-    #         G.add_node(i, pos=(points[i * 2], points[i * 2 + 1]))
-    #     for i in range(num_points):
-    #         for j in range(i + 1, num_points):
-    #             distance = distances[i, j]
-    #             G.add_edge(i, j, weight=distance)
-    #     # Calculate the minimum spanning tree using Kruskal's algorithm
-    #     T = nx.minimum_spanning_tree(G)
-    #     # Create the image
-    #     img = Image.new('L', size, 0)
-    #     draw = ImageDraw.Draw(img)
-    #     # Draw the edges from the minimum spanning tree
-    #     for edge in T.edges():
-    #         i, j = edge
-    #         x1, y1 = points[i * 2], points[i * 2 + 1]
-    #         x2, y2 = points[j * 2], points[j * 2 + 1]
-    #         # Compare squared distance to avoid square root calculation
-    #         if (x1 - x2)**2 + (y1 - y2)**2 < (self.image_size * 0.2) ** 2:
-    #             draw.line((y1, x1, y2, x2), fill=255, width=1)
-    #     # invert the image
-    #     img = ImageOps.invert(img)
-        
-    #     return img
-
     def make_image_display(self, size, points):
         num_points = len(points) // 2
         # Convert points to a numpy array for efficient calculations
@@ -159,6 +127,7 @@ class GeneticAlgoArt:
         self.result_image.append(solution[1])
         self.reference_mse = self.fitness_func(ga_instance, solution, solution_idx)
         instance = ga_instance.generations_completed
+        # till half the generations are reached, the frequency is halved to capture double the number of images that were supposed to be captured
         if instance % int(self.save_frequency/2) == 0 and instance <= self.num_generations/2:
             # img = self.make_image((self.image_size, self.image_size), self.result_image)
             img = self.make_image_display((self.image_size, self.image_size), self.result_image)
@@ -166,6 +135,7 @@ class GeneticAlgoArt:
             img.save('GA_images/' + self.int2str(instance) + '.png')
             self.progress_bar.empty()
             self.progress_bar.progress((instance/self.num_generations), text='Genetic Algorithm in Progress')
+        # after half the number of generation is reached the frequency is doubled so as to capture less images
         elif instance % self.save_frequency*2 == 0 and instance > self.num_generations/2:
             # img = self.make_image((self.image_size, self.image_size), self.result_image)
             img = self.make_image_display((self.image_size, self.image_size), self.result_image)
