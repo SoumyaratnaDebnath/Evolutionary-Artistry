@@ -146,7 +146,7 @@ class GeneticAlgoArt:
 
     def write_text_on_image(self, image, text):
         draw = ImageDraw.Draw(image)
-        font = ImageFont.truetype("arial.ttf", 12)
+        font = ImageFont.load_default()
         text_color = (128,)
         text_position = (5, 5)
         draw.text(text_position, text, font=font, fill=text_color)
