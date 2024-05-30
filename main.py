@@ -63,7 +63,7 @@ if uploaded_file is not None:
             with col1:
                 st.image('outputGA.gif', use_column_width=True, caption='GA Optimization over the Generations')
             with col2:
-                st.image('outputGA.png', use_column_width=True, caption='Image Viusalization as a Spanning Tree')
+                st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after', num_generations_ga, 'Generations')
 
             st.write('---')
 
