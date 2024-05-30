@@ -59,12 +59,14 @@ if uploaded_file is not None:
             _bar.progress(1.0, text='Genetic Algorithm Completed')
             makeGIF('GA_images', 'outputGA.gif', duration=500)
             
-            col1, col2 = st.columns((1, 1))
-            with col1:
-                st.image('outputGA.gif', use_column_width=True, caption='GA Optimization over the Generations')
-            with col2:
-                st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
-
+            # col1, col2 = st.columns((1, 1))
+            # with col1:
+            #     st.image('outputGA.gif', use_column_width=True, caption='GA Optimization over the Generations')
+            # with col2:
+            #     st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
+            col1 = st.columns((1))
+            with col1: st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
+            
             st.write('---')
 
             with st.container():
