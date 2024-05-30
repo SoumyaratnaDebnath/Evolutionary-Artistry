@@ -66,8 +66,9 @@ if uploaded_file is not None:
             # with col2:
             #     st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
             
-            col1 = st.columns((1))
-            with col1: st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
+            col1, col2, col3 = st.columns((1, 2, 1))
+            with col2:
+                st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
             
             st.write('---')
 
