@@ -57,13 +57,15 @@ if uploaded_file is not None:
             G = GeneticAlgoArt(num_generations=num_generations_ga+1, sol_per_pop=solution_per_population, image_size=image_size, save_frequency=save_frequency, progress_bar=_bar)
             G.run()
             _bar.progress(1.0, text='Genetic Algorithm Completed')
-            makeGIF('GA_images', 'outputGA.gif', duration=500)
-            
+
+            # # For generating and displaying the GIF 
+            # makeGIF('GA_images', 'outputGA.gif', duration=500)
             # col1, col2 = st.columns((1, 1))
             # with col1:
             #     st.image('outputGA.gif', use_column_width=True, caption='GA Optimization over the Generations')
             # with col2:
             #     st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
+            
             col1 = st.columns((1))
             with col1: st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
             
