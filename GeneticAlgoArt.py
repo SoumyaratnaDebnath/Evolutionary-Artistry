@@ -41,6 +41,7 @@ class GeneticAlgoArt:
         img = cv2.imread(img)
         # Resize the image to reduce the computational cost of edge detection
         img = cv2.resize(img, (img_size, img_size))
+        cv2.imwrite(self.image_name, img) # save the resized image for visualizing later
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         # Apply Gaussian blur to the grayscale image to reduce noise
         blurred = cv2.GaussianBlur(gray, (5, 5), 0)
