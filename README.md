@@ -2,6 +2,6 @@
 
 The project combines the principles of the Genetic Algorithm to approximate an image using a single running line; which then is used as a seed for Conway's Game of Life to generate unique artworks! 
 
-![Run the Application]("https://evolutionary-artistry.streamlit.app/")
+[Run the Application]("https://evolutionary-artistry.streamlit.app/")
 <br>
-![See Demo](https://www.youtube.com/embed/Fg6OHpA3eCE)
+[See Demo](https://www.youtube.com/embed/Fg6OHpA3eCE)
