@@ -20,8 +20,3 @@
 ### Future Work
 
 <p style="text-align:justify;">Future developments of this project could involve refining the Genetic Algorithm to enhance the accuracy and detail of the initial line approximation. Additionally, exploring variations in the rules of Conway’s Game of Life or integrating other cellular automata could yield even more diverse and complex artworks. Further research into the intersection of machine learning and generative art will continue to uncover innovative methods for creating and transforming visual content.</p>
-
-
-### Future Work
-
-<p style="text-align:justify;">Future developments of this project could involve refining the Genetic Algorithm to enhance the accuracy and detail of the initial line approximation. Additionally, exploring variations in the rules of Conway’s Game of Life or integrating other cellular automata could yield even more diverse and complex artworks. Further research into the intersection of machine learning and generative art will continue to uncover innovative methods for creating and transforming visual content.</p>
