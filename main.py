@@ -8,7 +8,7 @@ st.set_page_config(page_title="Evolutionary Artistry", layout="wide")
 
 with st.container():
     st.markdown("## Create Artworks using Genetic Algorithm")
-    st.markdown("#### Use `Genetic Algorithm` and `Game of Life` over use your own image to create beautiful artworks.")
+    st.markdown("#### Use `Genetic Algorithm` and `Game of Life` to create beautiful artworks.")
 
 st.write('---')
 
