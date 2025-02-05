@@ -62,19 +62,19 @@ if uploaded_file is not None:
             # makeGIF('GA_images', 'outputGA.gif', duration=500)
             # col1, col2 = st.columns((1, 1))
             # with col1:
-            #     st.image('outputGA.gif', use_column_width=True, caption='GA Optimization over the Generations')
+            #     st.image('outputGA.gif', use_container_width=True, caption='GA Optimization over the Generations')
             # with col2:
-            #     st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
+            #     st.image('outputGA.png', use_container_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
 
             col1, col2 = st.columns((1, 1))
             with col1:
-                st.image('inputGA.png', use_column_width=True, caption='Input Image')
+                st.image('inputGA.png', use_container_width=True, caption='Input Image')
             with col2:
-                st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
+                st.image('outputGA.png', use_container_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
             
             # col1, col2, col3 = st.columns((1, 2, 1))
             # with col2:
-            #     st.image('outputGA.png', use_column_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
+            #     st.image('outputGA.png', use_container_width=True, caption='Image Visualization as a Single Running Line after ' + str(num_generations_ga) + ' Generations')
             
             st.write('---')
 
@@ -87,7 +87,7 @@ if uploaded_file is not None:
                 makeGIF('GOL_images', 'outputGOL.gif', duration=10)
                 col1, col2, col3 = st.columns((1, 2, 1))
                 with col2:
-                    st.image('outputGOL.gif', use_column_width=True, caption='Game of Life Simulation over the Generations')
+                    st.image('outputGOL.gif', use_container_width=True, caption='Game of Life Simulation over the Generations')
                     
 
 
